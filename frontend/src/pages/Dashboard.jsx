@@ -1,47 +1,60 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import AuthContext from '../context/auth.context'; // Update the import path as necessary
+import AuthContext from '../context/auth.context';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const { user, logout } = useContext(AuthContext); // Assuming you have user data in context
-    const [parties, setParties] = useState([]); // State to hold parties
+    const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [parties, setParties] = useState([]);
 
     const fetchParties = async () => {
-        const token = localStorage.getItem('token'); // Fetch the token from localStorage
-        if (!token) return; // Return if no token is found
+        const token = localStorage.getItem('token');
+        if (!token) return;
 
         try {
             const response = await axios.get('http://localhost:6969/api/parties', {
                 headers: {
-                    'Authorization': `Bearer ${token}` // Use the retrieved token
+                    'Authorization': `Bearer ${token}`
                 }
             });
             console.log('Parties fetched:', response.data);
-            setParties(response.data); // Assuming you have a state for parties
+            setParties(response.data);
         } catch (error) {
             console.error('Error fetching parties:', error);
         }
     };
 
-
     useEffect(() => {
-        if (user) { // Ensure user is available before fetching
+        if (user) {
             fetchParties();
         }
     }, [user]);
 
+    const handleCreateParty = () => {
+        navigate('/createparty');
+    };
+
+    const handleEditParty = (partyId) => {
+        navigate(`/editparty/${partyId}`);
+    };
+
     return (
         <div>
-            <h1>{user.username}'s Dashboard</h1> {/* Display user name */}
+            <h1>{user.username}'s Dashboard</h1>
             <button onClick={logout}>Logout</button>
             <h2>Your Parties:</h2>
+            <button onClick={handleCreateParty}>Create Party</button>
             <ul>
                 {parties.length > 0 ? (
                     parties.map((party) => (
                         <li key={party._id}>
                             <h3>{party.name}</h3>
-                            <p>Date: {party.date}</p>
+                            <p>Date: {new Date(party.date).toLocaleDateString('en-GB')}</p>
                             <p>Location: {party.location}</p>
+                            {party.creator === user.id && (
+                                <button onClick={() => handleEditParty(party._id)}>Edit</button>
+                            )}
                         </li>
                     ))
                 ) : (

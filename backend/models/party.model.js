@@ -4,6 +4,7 @@ const partySchema = new mongoose.Schema({
     name: { type: String, required: true },
     date: { type: Date, required: true },
     location: { type: String, required: true },
+    budget: { type: Number, required: true },
     creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     invitedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     acceptedUsers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
