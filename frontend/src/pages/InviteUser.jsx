@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import '../styles/InviteUsers.css';
 
 const InviteUsers = () => {
     const { partyId } = useParams(); // Get the party ID from the URL
     const [users, setUsers] = useState([]);
-    // const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchUsersWithInvitationStatus = async () => {
@@ -20,10 +20,9 @@ const InviteUsers = () => {
                 });
 
                 setUsers(response.data);
-                // setLoading(false);
             } catch (error) {
                 console.error('Error fetching users:', error);
-                // setLoading(false);
+
             }
         };
 
@@ -43,21 +42,17 @@ const InviteUsers = () => {
                     }
                 });
 
-            // Update invitation status for the invited user
-            setUsers(users.map(user => user._id === userId ? { ...user, invited: true, status: 'pending' } : user).filter);
+            setUsers(users.map(user => user._id === userId ? { ...user, invited: true, status: 'pending' } : user));
         } catch (error) {
             console.error('Error inviting user:', error);
         }
     };
 
-    // if (loading) {
-    //     return <p>Loading...</p>;
-    // }
 
     return (
-        <div>
+        <div className="invite-users-container">
             <h1>Invite Users to the Party</h1>
-            <ul>
+            <ul className="invite-users-list">
                 {users.map(user => (
                     <li key={user._id}>
                         <span>{user.username}</span>

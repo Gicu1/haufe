@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import AuthContext from '../context/auth.context';
+import '../styles/Register.css';
 
 function Register() {
     const { register } = useContext(AuthContext);
@@ -29,40 +30,42 @@ function Register() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={formData.username}
-                onChange={handleChange}
-            />
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-            />
-            <input
-                type={showPassword ? 'text' : 'password'} // Toggle password visibility
-                name="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-            />
-            <input
-                type={showPassword ? 'text' : 'password'} // Toggle confirm password visibility
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-            />
-            <button type="button" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? 'Hide Passwords' : 'Show Passwords'}
-            </button>
-            <button type="submit">Register</button>
-        </form>
+        <div className="register-container">
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={formData.username}
+                    onChange={handleChange}
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+                <input
+                    type={showPassword ? 'text' : 'password'} // Toggle password visibility
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                />
+                <input
+                    type={showPassword ? 'text' : 'password'} // Toggle confirm password visibility
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                />
+                <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? 'Hide Passwords' : 'Show Passwords'}
+                </button>
+                <button type="submit">Register</button>
+            </form>
+        </div>
     );
 }
 

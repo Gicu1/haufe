@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../styles/CreateParty.css';
 
 const CreateParty = () => {
     const [name, setName] = useState('');
@@ -44,9 +45,9 @@ const CreateParty = () => {
     };
 
     return (
-        <div>
+        <div className="create-party-container">
             <h1>Create a New Party</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="create-party-form" onSubmit={handleSubmit}>
                 <div>
                     <label>Name:</label>
                     <input

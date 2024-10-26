@@ -1,0 +1,49 @@
+/* InviteUsers.css */
+.invite-users-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f0f2f5;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.invite-users-container h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.invite-users-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.invite-users-list li {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invite-users-list span {
+    color: #555;
+}
+
+.invite-users-list button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.invite-users-list button:hover {
+    background-color: #0056b3;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import '../styles/EditParty.css';
 
 const EditParty = () => {
     const { id } = useParams(); // Get party ID from URL
@@ -61,9 +62,9 @@ const EditParty = () => {
     };
 
     return (
-        <div>
+        <div className="edit-party-container">
             <h1>Edit Party</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="edit-party-form" onSubmit={handleSubmit}>
                 <div>
                     <label>Name:</label>
                     <input
