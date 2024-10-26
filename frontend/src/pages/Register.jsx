@@ -9,16 +9,16 @@ function Register() {
         username: '',
         email: '',
         password: '',
-        confirmPassword: '', // Add confirmPassword state
+        confirmPassword: '',
     });
-    const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-    const navigate = useNavigate(); // Initialize useNavigate
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Check if passwords match
+
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match!");
             return;
@@ -54,7 +54,7 @@ function Register() {
                     onChange={handleChange}
                 />
                 <input
-                    type={showPassword ? 'text' : 'password'} // Toggle confirm password visibility
+                    type={showPassword ? 'text' : 'password'}
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     value={formData.confirmPassword}
@@ -64,6 +64,9 @@ function Register() {
                     {showPassword ? 'Hide Passwords' : 'Show Passwords'}
                 </button>
                 <button type="submit">Register</button>
+                <button type="button" onClick={() => navigate('/login')}>
+                    Go to Login
+                </button>
             </form>
         </div>
     );

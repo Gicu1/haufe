@@ -43,7 +43,7 @@ const CreateParty = async (req, res) => {
             budget,
             creator: req.user.id,
             acceptedUsers: [req.user.id], // Automatically accept the creator
-            tasks: [], // Initialize with an empty tasks array
+            tasks: [],
         });
 
         res.status(201).json(newParty);
@@ -74,7 +74,6 @@ const UpdateParty = async (req, res) => {
             return res.status(403).json({ message: "You are not authorized to edit this party" });
         }
 
-        // Proceed to update the party
         const updatedParty = await Party.findByIdAndUpdate(
             id,
             {

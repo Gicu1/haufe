@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import '../styles/InviteUsers.css';
 
 const InviteUsers = () => {
-    const { partyId } = useParams(); // Get the party ID from the URL
+    const { partyId } = useParams();
     const [users, setUsers] = useState([]);
 
     useEffect(() => {

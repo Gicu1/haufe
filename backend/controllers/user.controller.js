@@ -8,7 +8,6 @@ const GetUsersWithInvitationStatus = async (req, res) => {
         const users = await User.find(); // Fetch all users
         const invitations = await Invitation.find({ party: partyId }); // Fetch all invitations for the party
 
-        // Map users to include invitation status
         const usersWithStatus = users.map(user => {
             const invitation = invitations.find(inv => inv.invitedUser.toString() === user._id.toString());
             return {

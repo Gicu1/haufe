@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/EditParty.css';
 
 const EditParty = () => {
-    const { id } = useParams(); // Get party ID from URL
+    const { id } = useParams();
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
     const [location, setLocation] = useState('');
@@ -25,7 +25,7 @@ const EditParty = () => {
                 });
                 const party = response.data;
                 setName(party.name);
-                setDate(new Date(party.date).toISOString().split('T')[0]); // Format for date input
+                setDate(new Date(party.date).toISOString().split('T')[0]);
                 setLocation(party.location);
                 setBudget(party.budget);
                 setInvitedUsers(party.invitedUsers.join(', '));
@@ -69,7 +69,7 @@ const EditParty = () => {
                     <label>Name:</label>
                     <input
                         type="text"
-                        value={name} // Pre-fill with the current name
+                        value={name} // Pre-fill
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
@@ -78,7 +78,7 @@ const EditParty = () => {
                     <label>Date:</label>
                     <input
                         type="date"
-                        value={date} // Pre-fill with the current date
+                        value={date}
                         onChange={(e) => setDate(e.target.value)}
                         required
                     />
@@ -87,7 +87,7 @@ const EditParty = () => {
                     <label>Location:</label>
                     <input
                         type="text"
-                        value={location} // Pre-fill with the current location
+                        value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         required
                     />
@@ -96,7 +96,7 @@ const EditParty = () => {
                     <label>Budget:</label>
                     <input
                         type="number"
-                        value={budget} // Pre-fill with the current budget
+                        value={budget}
                         onChange={(e) => setBudget(e.target.value)}
                         required
                     />
