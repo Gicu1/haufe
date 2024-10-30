@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
     const [parties, setParties] = useState([]);
-    const [invitations, setInvitations] = useState([]); // State to hold invitations
+    const [invitations, setInvitations] = useState([]);
 
     const fetchParties = async () => {
         const token = localStorage.getItem('token');
@@ -55,6 +55,7 @@ const Dashboard = () => {
             });
             // Refresh invitations after accepting
             fetchInvitations();
+            fetchParties();
         } catch (error) {
             console.error('Error accepting invitation:', error);
         }
@@ -63,7 +64,7 @@ const Dashboard = () => {
     useEffect(() => {
         if (user) {
             fetchParties();
-            fetchInvitations(); // Fetch invitations when the user is available
+            fetchInvitations();
         }
     }, [user]);
 

@@ -11,6 +11,8 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
+// const __dirname = path.resolve();
+
 const testRoute = require('./routes/testRoute');
 app.use('/api', testRoute);
 
@@ -20,9 +22,14 @@ app.use('/api/auth', authRoute);
 const partyRoute = require('./routes/party.routes');
 app.use('/api/parties', partyRoute);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "..", "frontend", "dist", "index.html"));
+    });
+}
 
 app.listen(PORT, () => {
     connectDB();

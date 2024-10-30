@@ -4,7 +4,9 @@
   "description": "haufegroup hackaton 26.10.2024",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+    "dev": "NODE_ENV=development nodemon backend/server.cjs",
+    "build": "npm install && npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend",
+    "start": "NODE_ENV=production node backend/server.cjs"
   },
   "keywords": [],
   "author": "",
