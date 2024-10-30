@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (userData) => {
         try {
-            const response = await axios.post('http://localhost:6969/api/auth/login', userData);
+            const response = await axios.post('https://haufe.onrender.com/api/auth/login', userData);
             localStorage.setItem('token', response.data.token);
             const userDataFromToken = JSON.parse(atob(response.data.token.split('.')[1])); // Decode token to get user info
             setUser({ id: userDataFromToken.id, username: userDataFromToken.username });
